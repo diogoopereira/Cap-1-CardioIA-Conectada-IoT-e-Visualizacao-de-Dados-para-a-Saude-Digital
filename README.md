@@ -8,9 +8,6 @@
 
 # CardioIA – Fase 3: Monitoramento Contínuo com IoT na Saúde
 
-## Nome do grupo
-
-*(nome do grupo)*
 
 ## 👨‍🎓 Integrantes: 
 - Filipe Augusto Lima Silva
