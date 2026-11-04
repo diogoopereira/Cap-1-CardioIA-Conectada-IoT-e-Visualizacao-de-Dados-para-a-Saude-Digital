@@ -1,0 +1,366 @@
+[
+  {
+    "id": "a1c0d1e2f3a40001",
+    "type": "tab",
+    "label": "CardioIA - Monitoramento",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "a1c0d1e2f3a40002",
+    "type": "mqtt-broker",
+    "name": "HiveMQ público",
+    "broker": "broker.hivemq.com",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  },
+  {
+    "id": "a1c0d1e2f3a40003",
+    "type": "mqtt in",
+    "z": "a1c0d1e2f3a40001",
+    "name": "ESP32 sinais vitais",
+    "topic": "fiap/cardioia/fase3/g7k3/sinais",
+    "qos": "0",
+    "datatype": "json",
+    "broker": "a1c0d1e2f3a40002",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 150,
+    "y": 160,
+    "wires": [
+      [
+        "a1c0d1e2f3a40004",
+        "a1c0d1e2f3a40005"
+      ]
+    ]
+  },
+  {
+    "id": "a1c0d1e2f3a40004",
+    "type": "debug",
+    "z": "a1c0d1e2f3a40001",
+    "name": "payload recebido",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": true,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "payload.seq",
+    "statusType": "msg",
+    "x": 400,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "a1c0d1e2f3a40005",
+    "type": "function",
+    "z": "a1c0d1e2f3a40001",
+    "name": "Fog: limites e alertas",
+    "func": "// CardioIA - camada Fog: recebe cada leitura publicada pelo ESP32, reaplica os\n// limites clínicos do grupo (os mesmos do firmware) e prepara as mensagens dos\n// três widgets do dashboard. Saídas: 1) gráfico de BPM, 2) gauge, 3) alerta.\n\n// Limites definidos pelo grupo (adulto em repouso). Mudar aqui não exige\n// regravar o ESP32.\nconst LIMITES = { febre: 38.0, hipotermia: 35.0, taquicardia: 120, bradicardia: 50 };\nconst p = msg.payload;\n\n// Quanto tempo a amostra ficou no buffer offline do ESP32. Subtraindo esse\n// atraso do relógio atual, o ponto vai para o gráfico no horário da coleta,\n// e não no horário em que chegou (importante após uma queda de rede).\nconst atrasoMs = p.envio_ms - p.t_ms;\nconst ts = Date.now() - atrasoMs;\n\n// Do bitmask do dispositivo só usamos o bit 0x20 (falha do DHT22): nesse caso\n// a temperatura enviada não é uma medição válida.\nconst sensorOk = !(p.alerta & 0x20);\n\n// Recalcula os alertas a partir dos valores brutos (segunda checagem,\n// independente da classificação feita na borda).\nconst alertas = [];\nif (!sensorOk) alertas.push(\"Falha no sensor de temperatura\");\nelse {\n  if (p.temp >= LIMITES.febre) alertas.push(`Febre: ${p.temp.toFixed(1)} °C`);\n  if (p.temp < LIMITES.hipotermia) alertas.push(`Hipotermia: ${p.temp.toFixed(1)} °C`);\n}\nif (p.bpm === 0) alertas.push(\"Sem pulso detectado\");\nelse if (p.bpm > LIMITES.taquicardia) alertas.push(`Taquicardia: ${p.bpm} bpm`);\nelse if (p.bpm < LIMITES.bradicardia) alertas.push(`Bradicardia: ${p.bpm} bpm`);\n\n// Mensagem do indicador de alerta (LED virtual + texto).\nconst atrasoS = Math.round(atrasoMs / 1000);\nconst status = {\n  payload: {\n    nivel: alertas.length ? \"critico\" : \"normal\",\n    titulo: alertas.length ? \"ALERTA\" : \"Sinais dentro dos limites\",\n    detalhe: alertas.length ? alertas.join(\" · \") : `${p.bpm} bpm · ${p.temp.toFixed(1)} °C`,\n    info: `Leitura #${p.seq}` + (atrasoS >= 3 ? ` · sincronizada do buffer offline (${atrasoS} s de atraso)` : \" · tempo real\")\n  }\n};\n\n// Uma mensagem por saída. \"null\" na saída 2 não envia nada ao gauge quando o\n// sensor falhou, para o medidor não exibir um valor falso.\nreturn [\n  { topic: \"BPM\", payload: p.bpm, ts },\n  sensorOk ? { payload: p.temp } : null,\n  status\n];",
+    "outputs": 3,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "outputLabels": [
+      "BPM",
+      "temperatura",
+      "alerta"
+    ],
+    "x": 410,
+    "y": 160,
+    "wires": [
+      [
+        "a1c0d1e2f3a40020"
+      ],
+      [
+        "a1c0d1e2f3a40021"
+      ],
+      [
+        "a1c0d1e2f3a40022"
+      ]
+    ]
+  },
+  {
+    "id": "a1c0d1e2f3a40010",
+    "type": "ui-base",
+    "name": "CardioIA",
+    "path": "/dashboard",
+    "appIcon": "",
+    "includeClientData": true,
+    "acceptsClientConfig": [
+      "ui-notification",
+      "ui-control"
+    ],
+    "showPathInSidebar": false,
+    "headerContent": "page",
+    "navigationStyle": "none",
+    "titleBarStyle": "default",
+    "showReconnectNotification": true,
+    "notificationDisplayTime": 1,
+    "showDisconnectNotification": true,
+    "allowInstall": false
+  },
+  {
+    "id": "a1c0d1e2f3a40011",
+    "type": "ui-theme",
+    "name": "CardioIA",
+    "colors": {
+      "surface": "#b71c1c",
+      "primary": "#b71c1c",
+      "bgPage": "#f5f5f7",
+      "groupBg": "#ffffff",
+      "groupOutline": "#e0e0e0"
+    },
+    "sizes": {
+      "density": "default",
+      "pagePadding": "12px",
+      "groupGap": "12px",
+      "groupBorderRadius": "6px",
+      "widgetGap": "12px"
+    }
+  },
+  {
+    "id": "a1c0d1e2f3a40012",
+    "type": "ui-page",
+    "name": "CardioIA · Monitor do paciente",
+    "ui": "a1c0d1e2f3a40010",
+    "path": "/monitor",
+    "icon": "heart-pulse",
+    "layout": "grid",
+    "theme": "a1c0d1e2f3a40011",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": 0,
+        "cols": 3
+      },
+      {
+        "name": "Tablet",
+        "px": 576,
+        "cols": 6
+      },
+      {
+        "name": "Small Desktop",
+        "px": 768,
+        "cols": 9
+      },
+      {
+        "name": "Desktop",
+        "px": 1024,
+        "cols": 12
+      }
+    ],
+    "tabs": [],
+    "order": 1,
+    "className": "",
+    "visible": "true",
+    "disabled": "false"
+  },
+  {
+    "id": "a1c0d1e2f3a40013",
+    "type": "ui-group",
+    "name": "Status clínico",
+    "page": "a1c0d1e2f3a40012",
+    "width": 12,
+    "height": 1,
+    "order": 1,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default",
+    "tab": ""
+  },
+  {
+    "id": "a1c0d1e2f3a40014",
+    "type": "ui-group",
+    "name": "Frequência cardíaca (BPM)",
+    "page": "a1c0d1e2f3a40012",
+    "width": 8,
+    "height": 1,
+    "order": 2,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default",
+    "tab": ""
+  },
+  {
+    "id": "a1c0d1e2f3a40015",
+    "type": "ui-group",
+    "name": "Temperatura corporal",
+    "page": "a1c0d1e2f3a40012",
+    "width": 4,
+    "height": 1,
+    "order": 3,
+    "showTitle": true,
+    "className": "",
+    "visible": "true",
+    "disabled": "false",
+    "groupType": "default",
+    "tab": ""
+  },
+  {
+    "id": "a1c0d1e2f3a40020",
+    "type": "ui-chart",
+    "z": "a1c0d1e2f3a40001",
+    "group": "a1c0d1e2f3a40014",
+    "name": "Gráfico BPM",
+    "label": "",
+    "order": 1,
+    "chartType": "line",
+    "category": "topic",
+    "categoryType": "msg",
+    "xAxisLabel": "",
+    "xAxisProperty": "ts",
+    "xAxisPropertyType": "msg",
+    "xAxisType": "time",
+    "xAxisFormat": "",
+    "xAxisFormatType": "auto",
+    "xmin": "",
+    "xmax": "",
+    "yAxisLabel": "bpm",
+    "yAxisProperty": "payload",
+    "yAxisPropertyType": "msg",
+    "ymin": "0",
+    "ymax": "200",
+    "bins": 10,
+    "action": "append",
+    "stackSeries": false,
+    "pointShape": "circle",
+    "pointRadius": 3,
+    "showLegend": false,
+    "removeOlder": "10",
+    "removeOlderUnit": "60",
+    "removeOlderPoints": "",
+    "colors": [
+      "#d32f2f",
+      "#0095FF",
+      "#FF7F0E",
+      "#2CA02C",
+      "#A347E1",
+      "#D62728",
+      "#FF9896",
+      "#9467BD",
+      "#C5B0D5"
+    ],
+    "textColor": [
+      "#666666"
+    ],
+    "textColorDefault": true,
+    "gridColor": [
+      "#e5e5e5"
+    ],
+    "gridColorDefault": true,
+    "width": 0,
+    "height": 6,
+    "className": "",
+    "interpolation": "linear",
+    "x": 690,
+    "y": 120,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "a1c0d1e2f3a40021",
+    "type": "ui-gauge",
+    "z": "a1c0d1e2f3a40001",
+    "name": "Gauge temperatura",
+    "group": "a1c0d1e2f3a40015",
+    "order": 1,
+    "value": "payload",
+    "valueType": "msg",
+    "width": 0,
+    "height": 5,
+    "gtype": "gauge-half",
+    "gstyle": "needle",
+    "title": "Temperatura",
+    "alwaysShowTitle": false,
+    "floatingTitlePosition": "top-left",
+    "units": "°C",
+    "icon": "",
+    "prefix": "",
+    "suffix": "",
+    "segments": [
+      {
+        "from": "30",
+        "color": "#1e88e5"
+      },
+      {
+        "from": "35",
+        "color": "#43a047"
+      },
+      {
+        "from": "37.5",
+        "color": "#fbc02d"
+      },
+      {
+        "from": "38",
+        "color": "#e53935"
+      }
+    ],
+    "min": "30",
+    "max": "42",
+    "sizeThickness": 16,
+    "sizeGap": 4,
+    "sizeKeyThickness": 8,
+    "styleRounded": true,
+    "styleGlow": false,
+    "className": "",
+    "x": 700,
+    "y": 160,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "a1c0d1e2f3a40022",
+    "type": "ui-template",
+    "z": "a1c0d1e2f3a40001",
+    "group": "a1c0d1e2f3a40013",
+    "page": "",
+    "ui": "",
+    "name": "Indicador de alerta",
+    "order": 1,
+    "width": 0,
+    "height": 2,
+    "head": "",
+    "format": "<template>\n  <div class=\"painel\" :class=\"msg?.payload?.nivel || 'aguardando'\">\n    <div class=\"led\"></div>\n    <div>\n      <div class=\"titulo\">{{ msg?.payload?.titulo || 'Aguardando dados do ESP32...' }}</div>\n      <div class=\"detalhe\">{{ msg?.payload?.detalhe }}</div>\n      <div class=\"info\">{{ msg?.payload?.info }}</div>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.painel { display: flex; align-items: center; gap: 20px; padding: 16px 20px; border-radius: 8px; background: #f1f3f5; width: 100%; }\n.painel.normal { background: #e8f5e9; }\n.painel.critico { background: #ffebee; }\n.led { width: 36px; height: 36px; border-radius: 50%; background: #9e9e9e; flex-shrink: 0; }\n.normal .led { background: #2e7d32; box-shadow: 0 0 14px #2e7d32; }\n.critico .led { background: #d32f2f; box-shadow: 0 0 18px #d32f2f; animation: pisca 1s infinite; }\n.titulo { font-size: 1.3rem; font-weight: 700; }\n.critico .titulo { color: #b71c1c; }\n.normal .titulo { color: #1b5e20; }\n.detalhe { font-size: 1.05rem; margin-top: 2px; }\n.info { font-size: 0.85rem; color: #666; margin-top: 4px; }\n@keyframes pisca { 50% { opacity: 0.35; } }\n</style>",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 700,
+    "y": 200,
+    "wires": [
+      []
+    ]
+  }
+]

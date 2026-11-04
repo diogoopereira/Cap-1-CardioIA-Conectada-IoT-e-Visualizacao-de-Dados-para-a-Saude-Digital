@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "author": "CardioIA - Fase 3",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -105.3, "left": 196.2, "attrs": { "temperature": "36.8", "humidity": "55" } },
+    { "type": "wokwi-pushbutton", "id": "btn1", "top": 140, "left": 220, "attrs": { "color": "green", "label": "PULSO", "bounce": "0" } },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": -90, "left": -110, "attrs": { "value": "1" } },
+    { "type": "wokwi-led", "id": "ledOn", "top": 160, "left": -150, "attrs": { "color": "limegreen", "label": "ONLINE" } },
+    { "type": "wokwi-led", "id": "ledAlr", "top": 160, "left": -90, "attrs": { "color": "red", "label": "ALERTA" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 240, "left": -160, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 240, "left": -100, "rotate": 90, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+
+    [ "dht1:VCC", "esp:3V3", "red", [] ],
+    [ "dht1:GND", "esp:GND.1", "black", [] ],
+    [ "dht1:SDA", "esp:D15", "green", [] ],
+
+    [ "btn1:1.l", "esp:D4", "blue", [] ],
+    [ "btn1:2.l", "esp:GND.1", "black", [] ],
+
+    [ "sw1:2", "esp:D27", "orange", [] ],
+    [ "sw1:1", "esp:GND.2", "black", [] ],
+
+    [ "esp:D26", "r1:1", "limegreen", [] ],
+    [ "r1:2", "ledOn:A", "limegreen", [] ],
+    [ "ledOn:C", "esp:GND.2", "black", [] ],
+
+    [ "esp:D2", "r2:1", "red", [] ],
+    [ "r2:2", "ledAlr:A", "red", [] ],
+    [ "ledAlr:C", "esp:GND.2", "black", [] ]
+  ],
+  "dependencies": {}
+}

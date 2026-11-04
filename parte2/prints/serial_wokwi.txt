@@ -1,0 +1,371 @@
+=== CardioIA | Wearable MQTT v2.0 ===
+Capacidade do buffer offline: 2880 amostras
+Broker: broker.hivemq.com:1883 | Topico: fiap/cardioia/fase3/g7k3/sinais
+Clique no botao verde no ritmo do coracao para gerar BPM.
+[LEITURA] #1 T=36.8C U=55% BPM=0 -> SEM_PULSO | OFFLINE | buffer=1/2880 (descart=0, decim=0)
+[LEITURA] #2 T=36.8C U=55% BPM=0 -> SEM_PULSO | OFFLINE | buffer=2/2880 (descart=0, decim=0)
+[MQTT] Conectando em broker.hivemq.com como cardioia-5ed22f76...
+[LEITURA] #3 T=36.8C U=55% BPM=0 -> SEM_PULSO | OFFLINE | buffer=3/2880 (descart=0, decim=0)
+[LEITURA] #4 T=36.8C U=55% BPM=0 -> SEM_PULSO | OFFLINE | buffer=4/2880 (descart=0, decim=0)
+[REDE] ONLINE -> MQTT conectado
+[MQTT] >>> Sincronizando backlog de 4 amostras
+[MQTT] {"seq":1,"t_ms":2005,"envio_ms":9573,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] {"seq":2,"t_ms":4013,"envio_ms":9577,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] {"seq":3,"t_ms":6021,"envio_ms":9592,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] {"seq":4,"t_ms":8027,"envio_ms":9595,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #5 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":5,"t_ms":10030,"envio_ms":10049,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #6 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":6,"t_ms":12034,"envio_ms":12053,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #7 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":7,"t_ms":14038,"envio_ms":14057,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #8 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":8,"t_ms":16042,"envio_ms":16061,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #9 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":9,"t_ms":18046,"envio_ms":18065,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #10 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":10,"t_ms":20050,"envio_ms":20069,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #11 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":11,"t_ms":22054,"envio_ms":22073,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #12 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":12,"t_ms":24058,"envio_ms":24077,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #13 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":13,"t_ms":26065,"envio_ms":26084,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #14 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":14,"t_ms":28069,"envio_ms":28088,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #15 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":15,"t_ms":30073,"envio_ms":30092,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #16 T=36.8C U=55% BPM=78 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":16,"t_ms":32077,"envio_ms":32096,"temp":36.8,"umid":55,"bpm":78,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #17 T=36.8C U=55% BPM=79 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":17,"t_ms":34081,"envio_ms":34100,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #18 T=36.8C U=55% BPM=79 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":18,"t_ms":36084,"envio_ms":36103,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #19 T=36.8C U=55% BPM=79 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":19,"t_ms":38088,"envio_ms":38107,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #20 T=36.8C U=55% BPM=79 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":20,"t_ms":40094,"envio_ms":40113,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #21 T=36.8C U=55% BPM=79 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":21,"t_ms":42099,"envio_ms":42118,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #22 T=36.8C U=55% BPM=79 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":22,"t_ms":44103,"envio_ms":44122,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #23 T=36.8C U=55% BPM=79 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":23,"t_ms":46107,"envio_ms":46126,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #24 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":24,"t_ms":48111,"envio_ms":48130,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #25 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":25,"t_ms":50115,"envio_ms":50134,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #26 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":26,"t_ms":52119,"envio_ms":52138,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #27 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":27,"t_ms":54123,"envio_ms":54142,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #28 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":28,"t_ms":56130,"envio_ms":56149,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #29 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":29,"t_ms":58134,"envio_ms":58153,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #30 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":30,"t_ms":60138,"envio_ms":60157,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #31 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":31,"t_ms":62142,"envio_ms":62161,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #32 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":32,"t_ms":64146,"envio_ms":64165,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #33 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":33,"t_ms":66150,"envio_ms":66169,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #34 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":34,"t_ms":68154,"envio_ms":68173,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #35 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":35,"t_ms":70158,"envio_ms":70177,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #36 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":36,"t_ms":72165,"envio_ms":72184,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #37 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":37,"t_ms":74169,"envio_ms":74188,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #38 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":38,"t_ms":76173,"envio_ms":76192,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #39 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":39,"t_ms":78177,"envio_ms":78196,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #40 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":40,"t_ms":80181,"envio_ms":80200,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[REDE] OFFLINE -> armazenando localmente
+[LEITURA] #41 T=36.8C U=55% BPM=79 -> NORMAL | OFFLINE | buffer=1/2880 (descart=0, decim=0)
+[LEITURA] #42 T=36.8C U=55% BPM=80 -> NORMAL | OFFLINE | buffer=2/2880 (descart=0, decim=0)
+[LEITURA] #43 T=36.8C U=55% BPM=79 -> NORMAL | OFFLINE | buffer=3/2880 (descart=0, decim=0)
+[LEITURA] #44 T=36.8C U=55% BPM=79 -> NORMAL | OFFLINE | buffer=4/2880 (descart=0, decim=0)
+[LEITURA] #45 T=36.8C U=55% BPM=79 -> NORMAL | OFFLINE | buffer=5/2880 (descart=0, decim=0)
+[LEITURA] #46 T=36.8C U=55% BPM=79 -> NORMAL | OFFLINE | buffer=6/2880 (descart=0, decim=0)
+[LEITURA] #47 T=36.8C U=55% BPM=79 -> NORMAL | OFFLINE | buffer=7/2880 (descart=0, decim=0)
+[LEITURA] #48 T=36.8C U=55% BPM=79 -> NORMAL | OFFLINE | buffer=8/2880 (descart=0, decim=0)
+[LEITURA] #49 T=36.8C U=55% BPM=79 -> NORMAL | OFFLINE | buffer=9/2880 (descart=0, decim=0)
+[MQTT] Conectando em broker.hivemq.com como cardioia-a44f54a5...
+[REDE] ONLINE -> MQTT conectado
+[MQTT] >>> Sincronizando backlog de 9 amostras
+[MQTT] {"seq":41,"t_ms":82187,"envio_ms":99341,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] {"seq":42,"t_ms":84194,"envio_ms":99345,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] {"seq":43,"t_ms":86201,"envio_ms":99359,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] {"seq":44,"t_ms":88208,"envio_ms":99362,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] {"seq":45,"t_ms":90215,"envio_ms":99377,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] {"seq":46,"t_ms":92222,"envio_ms":99381,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] {"seq":47,"t_ms":94229,"envio_ms":99395,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] {"seq":48,"t_ms":96236,"envio_ms":99398,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] {"seq":49,"t_ms":98243,"envio_ms":99412,"temp":36.8,"umid":55,"bpm":79,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #50 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":50,"t_ms":100247,"envio_ms":100266,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #51 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":51,"t_ms":102251,"envio_ms":102269,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #52 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":52,"t_ms":104254,"envio_ms":104273,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #53 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":53,"t_ms":106258,"envio_ms":106277,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #54 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":54,"t_ms":108262,"envio_ms":108281,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #55 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":55,"t_ms":110266,"envio_ms":110285,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #56 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":56,"t_ms":112270,"envio_ms":112289,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #57 T=36.8C U=55% BPM=8 -> BRADICARDIA | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":57,"t_ms":114274,"envio_ms":114293,"temp":36.8,"umid":55,"bpm":8,"alerta":8}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #58 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":58,"t_ms":116281,"envio_ms":116300,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #59 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":59,"t_ms":118284,"envio_ms":118303,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #60 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":60,"t_ms":120288,"envio_ms":120307,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #61 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":61,"t_ms":122292,"envio_ms":122311,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #62 T=36.8C U=55% BPM=80 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":62,"t_ms":124295,"envio_ms":124314,"temp":36.8,"umid":55,"bpm":80,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #63 T=36.8C U=55% BPM=92 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":63,"t_ms":126299,"envio_ms":126318,"temp":36.8,"umid":55,"bpm":92,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #64 T=36.8C U=55% BPM=100 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":64,"t_ms":128303,"envio_ms":128322,"temp":36.8,"umid":55,"bpm":100,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #65 T=36.8C U=55% BPM=113 -> NORMAL | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":65,"t_ms":130309,"envio_ms":130328,"temp":36.8,"umid":55,"bpm":113,"alerta":0}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #66 T=36.8C U=55% BPM=122 -> TAQUICARDIA | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":66,"t_ms":132314,"envio_ms":132333,"temp":36.8,"umid":55,"bpm":122,"alerta":4}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #67 T=36.8C U=55% BPM=136 -> TAQUICARDIA | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":67,"t_ms":134318,"envio_ms":134337,"temp":36.8,"umid":55,"bpm":136,"alerta":4}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #68 T=36.8C U=55% BPM=157 -> TAQUICARDIA | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":68,"t_ms":136322,"envio_ms":136341,"temp":36.8,"umid":55,"bpm":157,"alerta":4}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #69 T=36.8C U=55% BPM=157 -> TAQUICARDIA | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":69,"t_ms":138326,"envio_ms":138345,"temp":36.8,"umid":55,"bpm":157,"alerta":4}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #70 T=36.8C U=55% BPM=157 -> TAQUICARDIA | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":70,"t_ms":140330,"envio_ms":140349,"temp":36.8,"umid":55,"bpm":157,"alerta":4}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #71 T=36.8C U=55% BPM=157 -> TAQUICARDIA | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":71,"t_ms":142334,"envio_ms":142353,"temp":36.8,"umid":55,"bpm":157,"alerta":4}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #72 T=36.8C U=55% BPM=157 -> TAQUICARDIA | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":72,"t_ms":144338,"envio_ms":144357,"temp":36.8,"umid":55,"bpm":157,"alerta":4}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #73 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":73,"t_ms":146345,"envio_ms":146364,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #74 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":74,"t_ms":148349,"envio_ms":148368,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #75 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":75,"t_ms":150353,"envio_ms":150372,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #76 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":76,"t_ms":152357,"envio_ms":152376,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #77 T=36.8C U=55% BPM=0 -> SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":77,"t_ms":154361,"envio_ms":154380,"temp":36.8,"umid":55,"bpm":0,"alerta":16}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #78 T=38.6C U=55% BPM=0 -> FEBRE SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":78,"t_ms":156365,"envio_ms":156384,"temp":38.6,"umid":55,"bpm":0,"alerta":17}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #79 T=38.6C U=55% BPM=0 -> FEBRE SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":79,"t_ms":158369,"envio_ms":158388,"temp":38.6,"umid":55,"bpm":0,"alerta":17}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #80 T=38.6C U=55% BPM=0 -> FEBRE SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":80,"t_ms":160373,"envio_ms":160392,"temp":38.6,"umid":55,"bpm":0,"alerta":17}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #81 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":81,"t_ms":162379,"envio_ms":162398,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #82 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":82,"t_ms":164383,"envio_ms":164402,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #83 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":83,"t_ms":166387,"envio_ms":166406,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #84 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":84,"t_ms":168391,"envio_ms":168410,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #85 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":85,"t_ms":170395,"envio_ms":170414,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #86 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":86,"t_ms":172399,"envio_ms":172418,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #87 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":87,"t_ms":174403,"envio_ms":174422,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #88 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":88,"t_ms":176409,"envio_ms":176428,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #89 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":89,"t_ms":178414,"envio_ms":178433,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #90 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":90,"t_ms":180418,"envio_ms":180437,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #91 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":91,"t_ms":182422,"envio_ms":182441,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #92 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":92,"t_ms":184426,"envio_ms":184445,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #93 T=38.6C U=55% BPM=80 -> FEBRE | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":93,"t_ms":186430,"envio_ms":186449,"temp":38.6,"umid":55,"bpm":80,"alerta":1}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #94 T=38.6C U=55% BPM=0 -> FEBRE SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":94,"t_ms":188434,"envio_ms":188453,"temp":38.6,"umid":55,"bpm":0,"alerta":17}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #95 T=38.6C U=55% BPM=0 -> FEBRE SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":95,"t_ms":190438,"envio_ms":190457,"temp":38.6,"umid":55,"bpm":0,"alerta":17}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
+[LEITURA] #96 T=38.6C U=55% BPM=0 -> FEBRE SEM_PULSO | ONLINE | buffer=1/2880 (descart=0, decim=0)
+[MQTT] >>> Sincronizando backlog de 1 amostras
+[MQTT] {"seq":96,"t_ms":192445,"envio_ms":192464,"temp":38.6,"umid":55,"bpm":0,"alerta":17}
+[MQTT] <<< Sincronizacao concluida. Buffer local apagado.
