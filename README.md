@@ -136,15 +136,6 @@ jupyter nbconvert --to notebook --execute --inplace CardioIA_FA_LIF_vs_Logistica
 Também dá para abrir o notebook no VS Code ou no Jupyter e executar as células em ordem. Na primeira execução, ele baixa cerca de 2,6 MB de anotações da [PhysioNet](https://physionet.org/content/afdb/) (licença ODC-By). A execução completa leva cerca de 1 minuto.
 
 
-## 🗃 Histórico de lançamentos
-
-* 0.3.0 - 04/11/2026
-    * Ir Além 2: notebook comparando regressão logística e rede neuromórfica LIF na detecção de fibrilação atrial, relatório comparativo e README.
-* 0.2.0 - 04/11/2026
-    * Parte 2: publicação MQTT no HiveMQ, reconexão em tarefa FreeRTOS, fluxo e dashboard no Node-RED, prints e relatório.
-* 0.1.0 - 03/11/2026
-    * Parte 1: firmware Edge com DHT22 e botão de pulso, alertas locais, buffer offline com sincronização e relatório.
-
 ## 📋 Licença
 
 <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
