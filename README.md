@@ -1,21 +1,34 @@
+# FIAP - Faculdade de Informática e Administração Paulista
+
+<p align="center">
+<a href= "https://www.fiap.com.br/"><img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width=40% height=40%></a>
+</p>
+
+<br>
+
 # CardioIA – Fase 3: Monitoramento Contínuo com IoT na Saúde
 
-Protótipo de um **wearable cardíaco** que cobre o ciclo completo de dados em IoT aplicado à saúde: **captura → processamento local → transmissão → visualização → alerta**. O projeto tem três partes:
+## Nome do grupo
 
-| Parte | Tema | Pasta | Simulação |
-|---|---|---|---|
-| **Parte 1** | Armazenamento e processamento local (Edge Computing) | [`parte1/`](parte1/) | [Wokwi – Parte 1](https://wokwi.com/projects/479719847288354817) |
-| **Parte 2** | Transmissão MQTT e dashboard no Node-RED (Fog/Cloud Computing) | [`parte2/`](parte2/) | [Wokwi – Parte 2](https://wokwi.com/projects/479763582180327425) |
-| **Ir Além 2** | IA em séries temporais: regressão logística × rede neuromórfica LIF | [`ir_alem2/`](ir_alem2/) | Notebook Python |
+*(nome do grupo)*
 
-> 🎥 **Vídeo do Ir Além 2 (YouTube, não listado):** *(adicionar o link após a publicação)*
+## 👨‍🎓 Integrantes: 
+- Filipe Augusto Lima Silva
+- Laísa Cristina Capodifoglio Andrade
+- Johnathan da Cruz Gatti
+- Diogo Ferreira Pereira
+- André Victor Gonçalves Toledo
 
-## Integrantes do grupo
+## 👩‍🏫 Professores:
+### Tutor(a) 
+- Leonardo Ruiz Orabona
+### Coordenador(a)
+- André Godoi Chiovato
 
-- *(nome – RM)*
-- *(nome – RM)*
 
-## Arquitetura
+## 📜 Descrição
+
+Nesta fase, o CardioIA ganha um protótipo de **wearable cardíaco** que percorre o ciclo completo de dados em IoT aplicado à saúde: **captura → processamento local → transmissão → visualização → alerta**. A solução foi desenvolvida em três entregas.
 
 ```mermaid
 flowchart LR
@@ -23,103 +36,118 @@ flowchart LR
     S1["DHT22<br/>temperatura e umidade"] --> FW["Firmware<br/>alertas locais + buffer offline"]
     S2["Botão de pulso<br/>batimentos → BPM"] --> FW
   end
-  FW -- "MQTT publish<br/>fiap/cardioia/fase3/g7k3/sinais" --> BR[("Broker HiveMQ<br/>broker.hivemq.com:1883")]
-  BR -- "subscribe" --> NR["Node-RED<br/>função Fog: limites clínicos"]
-  NR --> DB["Dashboard<br/>gráfico BPM · gauge temperatura · alerta"]
-  PN[("PhysioNet AFDB<br/>intervalos RR reais")] --> IA["Ir Além 2<br/>logística × LIF"]
-  IA -. "próximo passo: LIF embarcado" .-> FW
+  FW -- "MQTT publish" --> BR[("Broker HiveMQ")]
+  BR -- "subscribe" --> NR["Node-RED<br/>função Fog"]
+  NR --> DB["Dashboard<br/>gráfico · gauge · alerta"]
+  PN[("PhysioNet AFDB")] --> IA["Ir Além 2<br/>logística × LIF"]
+  IA -. "próximo passo" .-> FW
 ```
 
-- **Parte 1:** o ESP32 trabalha sozinho e a "nuvem" é o Monitor Serial.
-- **Parte 2:** o mesmo dispositivo passa a publicar num broker MQTT real. O ESP32 e o Node-RED nunca se conectam diretamente: o ESP32 **publica** no tópico e o Node-RED **assina** o mesmo tópico.
-- **Ir Além 2:** análise separada, com dados clínicos reais. Ele mostra como detectar fibrilação atrial a partir dos instantes de batimento, que é a mesma informação que o botão de pulso do wearable já registra.
+**Parte 1 – Armazenamento e processamento local (Edge Computing)** · [simulação no Wokwi](https://wokwi.com/projects/479719847288354817)
 
-## Parte 1 – Edge Computing
+Um ESP32 lê dois sensores: o **DHT22** (temperatura e umidade) e um **botão de pulso**, em que cada clique representa um batimento e o firmware calcula o BPM. Cada leitura é classificada no próprio dispositivo (febre, hipotermia, taquicardia, bradicardia, ausência de pulso e falha do sensor), e o LED de alerta acende mesmo sem rede. Uma chave simula a conectividade Wi-Fi (variável booleana `wifiConectado`). Offline, as leituras entram num buffer limitado a **2.880 amostras**, o que dá 4 h sem rede a 1 amostra a cada 5 s. O buffer decima as amostras normais acima de 80% de ocupação e preserva os alertas. Quando a rede volta, o backlog é enviado em ordem e o armazenamento local é apagado.
 
-**Circuito:** ESP32 com **DHT22** (GPIO 15) e **botão de pulso** (GPIO 4, cada clique = 1 batimento), mais uma chave deslizante (GPIO 27) que simula a conectividade Wi-Fi (variável booleana `wifiConectado`). O LED verde indica online e o vermelho indica alerta clínico.
+**Parte 2 – Transmissão para nuvem e visualização (Fog/Cloud Computing)** · [simulação no Wokwi](https://wokwi.com/projects/479763582180327425)
 
-- **Processamento local:** cada leitura é classificada no próprio dispositivo (febre ≥ 38 °C, hipotermia < 35 °C, taquicardia > 120 bpm, bradicardia < 50 bpm, sem pulso, falha do sensor). O LED de alerta acende **mesmo offline**.
-- **Resiliência offline:** toda leitura entra primeiro num buffer circular em RAM. Quando a rede volta, o backlog é enviado em ordem (`Serial.println`) e o armazenamento local é apagado.
-- **Armazenamento limitado:** 2.880 amostras, o que dá 4 h sem rede a 1 amostra a cada 5 s (≈ 46 kB de RAM). Acima de 80% de ocupação, as amostras normais são decimadas. Com o buffer cheio, a primeira a sair é a amostra normal mais antiga, e os alertas são preservados.
-- **SPIFFS (opcional):** fica implementado atrás da constante `USE_SPIFFS`, para uso em chip real.
+O mesmo dispositivo passa a publicar cada leitura em JSON no broker MQTT da HiveMQ. A reconexão roda numa tarefa FreeRTOS separada, para que a coleta não pare enquanto o broker estiver inacessível. Um fluxo no **Node-RED** assina o tópico, reaplica os limites clínicos (camada Fog) e alimenta um dashboard com **gráfico de BPM**, **gauge de temperatura** e **indicador de alerta**. Leituras que chegam atrasadas, depois de uma queda de rede, são desenhadas no horário em que foram medidas.
 
-📄 [Relatório da Parte 1](parte1/RELATORIO_PARTE1.pdf) · 💻 [`sketch.ino`](parte1/sketch.ino)
+**Ir Além 2 – Inteligência Artificial em séries temporais de saúde**
 
-## Parte 2 – MQTT, Fog e Dashboard
+Usando os intervalos entre batimentos de 25 pacientes reais da *MIT-BIH Atrial Fibrillation Database* (PhysioNet), comparamos uma **regressão logística** com uma **rede neuromórfica LIF** na detecção de **fibrilação atrial**. A avaliação foi feita por paciente: quem está no teste nunca foi visto no treino.
 
-- **ESP32 → broker:** a biblioteca PubSubClient publica cada leitura como JSON (`seq`, `t_ms`, `envio_ms`, `temp`, `umid`, `bpm`, `alerta`) em `broker.hivemq.com`. A reconexão roda numa tarefa FreeRTOS separada, para que a coleta não pare enquanto o broker estiver fora do ar.
-- **Queda de rede:** a chave em OFF derruba a sessão MQTT e as leituras se acumulam no buffer. Em ON, o backlog é publicado em ordem, sem perda.
-- **Node-RED (Fog):** reaplica os limites clínicos e reposiciona cada leitura atrasada no horário em que foi medida (`envio_ms − t_ms`).
-- **Dashboard 2.0:** gráfico de BPM em tempo real, gauge de temperatura (30–42 °C) e indicador de alerta com LED virtual e texto.
+| Modelo | AUC | Acurácia balanceada |
+|---|---|---|
+| Regressão logística | 0,975 ± 0,031 | 0,951 ± 0,040 |
+| Rede LIF | 0,979 ± 0,016 | 0,959 ± 0,024 |
 
-![Dashboard em funcionamento](parte2/prints/08_dashboard_alerta_febre.png)
+O resultado foi um empate técnico. A rede LIF, porém, usa 4 parâmetros e 12 bytes de estado, o que caberia no próprio ESP32. A principal limitação, comum aos dois modelos, é que extrassístoles frequentes imitam a irregularidade da arritmia.
 
-📄 [Relatório da Parte 2](parte2/RELATORIO_PARTE2.pdf) · 💻 [`sketch.ino`](parte2/sketch.ino) · 🔀 [`flows.json`](parte2/flows.json) · 🖼️ [prints](parte2/prints/)
+🎥 **Vídeo de apresentação do Ir Além 2 (YouTube, não listado):** *(adicionar o link após a publicação)*
 
-### Como testar o fluxo completo
+**Documentos:** [Relatório Parte 1](parte1/RELATORIO_PARTE1.pdf) · [Relatório Parte 2](parte2/RELATORIO_PARTE2.pdf) · [Relatório comparativo Ir Além 2](ir_alem2/RELATORIO_IR_ALEM2.pdf) · [Notebook Ir Além 2](ir_alem2/CardioIA_FA_LIF_vs_Logistica.ipynb)
 
-1. Instale e inicie o Node-RED com o Dashboard 2.0:
+
+## 📁 Estrutura de pastas
+
+Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
+
+- <b>assets</b>: imagens usadas neste README, como o logo da FIAP.
+
+- <b>parte1</b>: entrega da Parte 1 (Edge Computing). Contém o firmware comentado do ESP32 (`sketch.ino`), o circuito do Wokwi (`diagram.json`), as bibliotecas (`libraries.txt`) e o relatório do fluxo de funcionamento e da lógica de resiliência (`RELATORIO_PARTE1.pdf`).
+
+- <b>parte2</b>: entrega da Parte 2 (Fog/Cloud Computing). Contém o firmware com MQTT (`sketch.ino`), `diagram.json`, `libraries.txt`, o export do fluxo e do dashboard do Node-RED (`flows.json`), a pasta `prints` com as evidências e o log serial do teste, e o relatório do fluxo MQTT e do dashboard (`RELATORIO_PARTE2.pdf`).
+
+- <b>ir_alem2</b>: entrega do Ir Além 2 (IA em séries temporais). Contém o notebook comentado e executado (`CardioIA_FA_LIF_vs_Logistica.ipynb`), as figuras geradas (`figuras`), as dependências (`requirements.txt`), um README específico e o relatório comparativo (`RELATORIO_IR_ALEM2.pdf`). A subpasta `dados`, com as anotações baixadas da PhysioNet, é criada na primeira execução e não vai para o repositório.
+
+- <b>.gitignore</b>: arquivos que não devem ir para o repositório (ambiente virtual Python, dados baixados e arquivos do sistema).
+
+- <b>README.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
+
+## 🔧 Como executar o código
+
+**Pré-requisitos**
+
+| Ferramenta | Versão usada | Para quê |
+|---|---|---|
+| Navegador e acesso ao [Wokwi](https://wokwi.com) | – | Simular o ESP32 (Partes 1 e 2), sem instalação e sem conta |
+| Node.js | 22 | Rodar o Node-RED (Parte 2) |
+| Node-RED + `@flowfuse/node-red-dashboard` | 5.0 + 1.34 | Fluxo e dashboard (Parte 2) |
+| Python | 3.12 | Notebook do Ir Além 2 (bibliotecas em `ir_alem2/requirements.txt`) |
+
+Clone o repositório:
+
+```bash
+git clone <URL deste repositório>
+cd <pasta do repositório>
+```
+
+### Parte 1 – Edge Computing
+
+1. Abra o [projeto da Parte 1 no Wokwi](https://wokwi.com/projects/479719847288354817) e clique no ▶. Para montar do zero, crie um projeto ESP32 e cole `parte1/sketch.ino`, `parte1/diagram.json` e `parte1/libraries.txt`.
+2. Clique no botão verde **PULSO** cerca de 1 vez por segundo e acompanhe o BPM no Monitor Serial.
+3. Coloque a chave em **OFF**: o LED verde apaga e o contador `buffer=` cresce. Volte para **ON**: o backlog aparece em `[NUVEM] ...` e o buffer é apagado.
+
+### Parte 2 – MQTT, Node-RED e dashboard
+
+1. Instale e inicie o Node-RED:
    ```bash
    npm install -g node-red
    cd ~/.node-red && npm install @flowfuse/node-red-dashboard
    node-red
    ```
-2. Em http://localhost:1880, vá em **Menu → Importar**, selecione [`parte2/flows.json`](parte2/flows.json) e clique em **Implementar**.
+2. Em http://localhost:1880, vá em **Menu → Importar**, selecione `parte2/flows.json` e clique em **Implementar**.
 3. Abra o dashboard em http://localhost:1880/dashboard/monitor.
-4. Abra o [projeto da Parte 2 no Wokwi](https://wokwi.com/projects/479763582180327425) e clique no ▶. **Mantenha a aba visível**: em segundo plano o navegador desacelera a simulação e o broker encerra a sessão.
+4. Abra o [projeto da Parte 2 no Wokwi](https://wokwi.com/projects/479763582180327425) e clique no ▶. Mantenha a aba visível: em segundo plano, o navegador desacelera a simulação e o broker encerra a sessão. Espere `[REDE] ONLINE -> MQTT conectado` no Monitor Serial.
 5. Teste os cenários:
 
 | Ação no Wokwi | Resultado no dashboard |
 |---|---|
-| Clicar no botão **PULSO** ~1×/s | Indicador verde, ~60–80 bpm no gráfico |
-| Clicar rápido (~3×/s) por 15 s | Alerta de taquicardia |
-| Clicar no DHT22 e subir para 38,5 °C | Alerta de febre, gauge na faixa vermelha |
-| Chave em OFF por ~20 s e depois ON | O buffer cresce no serial; na volta, o gráfico preenche o intervalo |
+| Clicar em **PULSO** cerca de 1 vez por segundo | Indicador verde, com 60–80 bpm no gráfico |
+| Clicar rápido (cerca de 3 vezes por segundo) por 15 s | Alerta de taquicardia |
+| Clicar no DHT22 e subir a temperatura para 38,5 °C | Alerta de febre, com o gauge na faixa vermelha |
+| Chave em **OFF** por cerca de 20 s e depois **ON** | O buffer cresce no serial; na volta, o gráfico preenche o intervalo |
 
-## Ir Além 2 – Fibrilação atrial: regressão logística × rede LIF
+### Ir Além 2 – IA em séries temporais
 
-Detecção de **fibrilação atrial** a partir dos **intervalos RR** de 25 pacientes da *MIT-BIH Atrial Fibrillation Database* (PhysioNet). A avaliação é **por paciente**: os pacientes de teste nunca aparecem no treino.
-
-| Modelo | AUC | Acurácia balanceada | Sensibilidade | Especificidade |
-|---|---|---|---|---|
-| Regressão logística (7 medidas HRV) | 0,975 ± 0,031 | 0,951 ± 0,040 | 0,974 ± 0,017 | 0,927 ± 0,089 |
-| Rede LIF (codificador de eventos + 1 neurônio) | 0,979 ± 0,016 | 0,959 ± 0,024 | 0,973 ± 0,028 | 0,945 ± 0,054 |
-
-O resultado é um **empate técnico**. A diferença está no custo: a rede LIF usa 4 parâmetros, 12 bytes de estado e cerca de 6 operações por batimento, o que caberia no próprio ESP32. A principal limitação, comum aos dois modelos, é que extrassístoles frequentes imitam a irregularidade da FA.
-
-📓 [Notebook](ir_alem2/CardioIA_FA_LIF_vs_Logistica.ipynb) · 📄 [Relatório comparativo](ir_alem2/RELATORIO_IR_ALEM2.pdf) · 📘 [README do Ir Além 2](ir_alem2/README.md) (inclui como executar)
-
-## Estrutura do repositório
-
-```
-├── parte1/                      Edge Computing
-│   ├── sketch.ino               firmware ESP32 comentado
-│   ├── diagram.json             circuito do Wokwi
-│   ├── libraries.txt            bibliotecas do Wokwi
-│   └── RELATORIO_PARTE1.pdf     fluxo de funcionamento e lógica de resiliência
-├── parte2/                      Fog/Cloud Computing
-│   ├── sketch.ino               firmware ESP32 com MQTT
-│   ├── diagram.json · libraries.txt
-│   ├── flows.json               fluxo e dashboard do Node-RED
-│   ├── prints/                  evidências (dashboard, Wokwi, log serial)
-│   └── RELATORIO_PARTE2.pdf     fluxo MQTT e configuração do dashboard
-└── ir_alem2/                    IA em séries temporais
-    ├── CardioIA_FA_LIF_vs_Logistica.ipynb
-    ├── figuras/ · requirements.txt · README.md
-    └── RELATORIO_IR_ALEM2.pdf   relatório comparativo
+```bash
+cd ir_alem2
+python3.12 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+jupyter nbconvert --to notebook --execute --inplace CardioIA_FA_LIF_vs_Logistica.ipynb
 ```
 
-## Tecnologias
+Também dá para abrir o notebook no VS Code ou no Jupyter e executar as células em ordem. Na primeira execução, ele baixa cerca de 2,6 MB de anotações da [PhysioNet](https://physionet.org/content/afdb/) (licença ODC-By). A execução completa leva cerca de 1 minuto.
 
-ESP32 · Wokwi · C++/Arduino · DHT22 · MQTT (PubSubClient, HiveMQ) · FreeRTOS · Node-RED 5 + Dashboard 2.0 · Python 3.12 · scikit-learn · NumPy · pandas · Matplotlib · wfdb (PhysioNet)
 
-## Segurança e privacidade
+## 🗃 Histórico de lançamentos
 
-O broker público usado na demonstração não tem autenticação nem criptografia, e só é adequado para **dados simulados**. Para dados reais de pacientes, que a LGPD trata como dados pessoais sensíveis, o projeto exigiria:
-- broker privado com TLS (porta 8883) e credencial por dispositivo;
-- controle de acesso por tópico;
-- credenciais fora do código;
-- identificação pseudonimizada do paciente;
-- autenticação no Node-RED.
+* 0.3.0 - 04/11/2026
+    * Ir Além 2: notebook comparando regressão logística e rede neuromórfica LIF na detecção de fibrilação atrial, relatório comparativo e README.
+* 0.2.0 - 04/11/2026
+    * Parte 2: publicação MQTT no HiveMQ, reconexão em tarefa FreeRTOS, fluxo e dashboard no Node-RED, prints e relatório.
+* 0.1.0 - 03/11/2026
+    * Parte 1: firmware Edge com DHT22 e botão de pulso, alertas locais, buffer offline com sincronização e relatório.
 
-Os detalhes estão no [relatório da Parte 2](parte2/RELATORIO_PARTE2.pdf).
+## 📋 Licença
+
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
